@@ -2,9 +2,12 @@ package com.example.segundoparcial;
 
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class PersonaModel {
@@ -65,5 +68,26 @@ public class PersonaModel {
             Log.d("error:",e.toString());
         }
         return obj;
+    }
+
+    public static List<PersonaModel> generarLista(String res) {
+        List<PersonaModel> lista = new ArrayList<>();
+
+        try {
+            JSONArray j = new JSONArray(res);
+            for (int i = 0; i < j.length(); i++){
+                JSONObject ob = j.getJSONObject(i);
+
+                PersonaModel persona = new PersonaModel();
+                persona.setNombre(ob.getString("nombre"));
+                persona.setTelefono(ob.getInt("telefono"));
+                lista.add(persona);
+            }
+            return lista;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

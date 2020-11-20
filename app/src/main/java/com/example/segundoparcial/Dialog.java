@@ -51,6 +51,7 @@ public class Dialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         String nombre = editNombre.getText().toString();
                         String telefono = editTelefono.getText().toString();
+
                         persona.setNombre(nombre);
                         persona.setTelefono(Integer.parseInt(telefono));
                         listener.actualizarLista(persona);
